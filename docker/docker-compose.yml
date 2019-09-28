@@ -1,0 +1,30 @@
+version: '3'
+services:
+  nginx:
+    build: ./nginx/
+    ports:
+      - 8080:80
+    volumes:
+      - ../cms:/var/www/html/cms
+    container_name: cake-nginx
+    depends_on:
+      - phpfpm
+
+  phpfpm:
+    build: ./phpfpm/
+    volumes:
+      - ../cms:/var/www/html/cms
+    container_name: cake-phpfpm
+
+  mysql:
+    image: mysql:8
+    volumes:
+       - "./mysql/initdb.d:/docker-entrypoint-initdb.d"
+    environment:
+      MYSQL_USER: cakephp
+      MYSQL_DATABASE: cake_cms
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: cake-mysql
+
