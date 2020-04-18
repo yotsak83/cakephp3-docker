@@ -21,7 +21,7 @@ cake-mysql
 cake-phpfpm
 $ docker exec -it cake-phpfpm bash
 // in phpfpm container
-/var/www/html # rm cms/empty && composer self-update && composer create-project --prefer-dist cakephp/app cms
+/var/www/html # rm cms/empty && composer self-update && composer create-project --prefer-dist cakephp/app:^3.8 cms
 ... composer install ...
 /var/www/html # exit
 ```
