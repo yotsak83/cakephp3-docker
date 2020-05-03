@@ -29,3 +29,13 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     container_name: cake-mysql
 
+  test-mysql:
+    image: mysql:8
+    environment:
+      MYSQL_USER: cakephp
+      MYSQL_DATABASE: test_cake_cms
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: test-cake-mysql
+
