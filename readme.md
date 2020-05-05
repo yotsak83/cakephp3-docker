@@ -40,3 +40,27 @@ $ docker exec -it cake-phpfpm bash
 ```
 
 * Access http://0.0.0.0:8080
+
+## Step execution by Xdebug using VSCode
+* Add extention "PHP Debug"
+* Select "Run > Add configuration..." to open launch.json
+* Add block below
+```
+{
+    "name": "Listen for XDebug on CakePHP3",
+    "type": "php",
+    "request": "launch",
+    "port": 9013,
+    "pathMappings": {
+        "/var/www/html/cms": "${workspaceRoot}/cms",
+        "/var/www/html/cms/webroot": "${workspaceRoot}/cms/webroot",
+        "/var/www/html/cms/bin/cake": "${workspaceRoot}/cms/bin/cake"
+    },
+    "xdebugSettings": {
+        "max_children": 128,
+        "max_data": 1024,
+        "max_depth": 10
+    },
+    "log": true
+},
+```
